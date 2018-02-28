@@ -1,14 +1,14 @@
 \documentclass[final,12pt, notitlepage]{article}
 
 % Useful math commands
-\input{/Users/kimk13/Dropbox/Research/alpha_math.tex}
+\input{/Users/kunheekim/Dropbox/Research/alpha_math.tex}
 
 % References
-\newcommand{\myreferences}{/Users/kimk13/Dropbox/Research/dissertn_bib}
+\newcommand{\myreferences}{/Users/kunheekim/Dropbox/Research/dissertn_bib}
 
 % image source
 %\graphicspath{{images/}{../images/}}
-%\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/JMP/} }
+%\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/JMP/} }
 
 %AHEC version
 %\title{The Effect of Discontinuous Post-Acute Care on Hospital Readmissions}
@@ -21,7 +21,7 @@
 \title{The Effect of Workforce Assignment on Performance: Evidence from Home Health Care}
 \date{\parbox{\linewidth}{\centering%
  % Preliminary draft: Do not cite \endgraf\bigskip
-	May 2017 \hspace*{0cm} \endgraf\medskip
+	February 2018 \hspace*{0cm} \endgraf\medskip
 	}}
 
 
@@ -33,7 +33,8 @@
 
 
 \begin{abstract}
-Effective workforce assignment has the potential for improving performance. Using novel home health data combining provider work logs, personnel data, and detailed patient records, we estimate the effect of provider handoffs---a marker of care discontinuity---on hospital readmissions, an important performance measure for healthcare systems. We use workflow interruption caused by attrition and providers' work inactivity as an instrument for nurse handoffs. We find handoffs to increase the likelihood of hospital readmissions, implying that one in four hospitalizations during home health care would be avoided if handoffs were eliminated. Moreover, the frequency and sequencing of handoffs affect the likelihood of rehospitalization.
+Effective workforce assignment has the potential for improving performance. Using novel home health data combining provider work logs, personnel data, and detailed patient records, we estimate the effect of provider handoffs---a marker of care discontinuity---on hospital readmissions, an important performance measure for healthcare systems. We use workflow interruption caused by attrition and providers' work inactivity as an instrument for nurse handoffs.
+We find handoffs to susbtantially increase hospital readmissions. Our estimates imply that a single handoff increases the likelihood of 30-day hospital readmission by 16 percent and one in four hospitalizations during home health care would be avoided if handoffs were eliminated. Moreover, handoffs are more detrimental for high-severity patients and expedite hospital readmission. The frequency and sequencing of handoffs also affect the likelihood of rehospitalization.
 %Our findings highlight the importance of workforce assignment to ensure care continuity in improving performance.
 %Care continuity post-discharge through workforce assignment has the potential for preventing hospital readmissions, a critical performance measure for health systems.
 %Using novel and rich home health data linking visits, patient health status, provider work logs, and human resources data, we estimate the causal effect of provider handoffs--a marker of care discontinuity--on hospital readmissions.
@@ -61,15 +62,15 @@ We also thank David Baiada, Alan Wright, Ann Gallagher, and Stephanie Finnel for
 %\todo{1. do sample restriction to admissions starting on 7/31 at the latest to remove right-censored admissions (for these admissions, i know if they had a recertified episode for sure); 2. not all piece-rate paid workers in my definition are on-call nurses. so i shouldn't call them on-call nurses}
 %\todo{In the code crhandoff_pd.do, I have to count HO indicator only once per episode-day-time. Also count number of nurse visits only once per episode-day-time.}
 
-Workforce allocation and scheduling are routinely designed to achieve multiple organizational goals, with efficiency typically viewed as the leading objective.\footnote{This chapter is coauthored by Guy David.} Efficient workforce assignment entails the matching of task and talent \citep{Garicano2004}, management of planned and unplanned absences \citep{Ehrenberg1970, Allen1983}, exigency and geographical optimization, and responsiveness to demand shocks \citep{Hamermesh1996}.
+Workforce allocation and scheduling are routinely designed to achieve multiple organizational goals, with efficiency typically viewed as the leading objective. Efficient workforce assignment entails the matching of task and talent \citep{Garicano2004}, management of planned and unplanned absences \citep{Ehrenberg1970, Allen1983}, exigency and geographical optimization, and responsiveness to demand shocks \citep{Hamermesh1996}.
 Beyond efficiency, workforce allocation goals may include rewarding seniority, promoting workforce equity, and enabling effective learning and synergy \citep{Mas2009}. These goals potentially compromise short-term efficiency but at the same time raise employee satisfaction and reduce costly turnover. Another set of objectives is linked with the use of workforce assignment to achieve higher quality. While often in conflict with cost minimization goals, higher quality may be rewarded directly through higher willingness to pay and indirectly through increased reputation.
 
 Hospitals and health care systems implement strategies to improve the quality of care for all patients through focusing on patient safety, reducing medical errors, establishing evidence-based guidelines, and lowering the rate of unnecessary and preventable intervention \citep{Kozak2001, Makary2016}.
 In fact, ensuring continuity of care within and across care settings is identified as a pillar of quality improvement \citep{Richardson2001}.\footnote{Continuity of care has also been shown to reduce utilization and costs of care \citep{Raddish1999}, such as by reducing the number of emergency department visits and shortening the length of hospital stays \citep{Wasson1984}.}
-Continuity of care across settings involves, by definition, a multi-professional pathway that emphasizes the need for care coordination. On the other hand, continuity of care within a setting is achieved by workforce allocation, and in particular a continuous relationship between a patient and a single health care professional who is the sole source of care and information for the patient. However, the achievement of continuity of care requires costly deployment of resources. Ensuring smooth transitions in care and effective transmission of information between providers likely imposes massive constraints that interfere with the goal of optimizing scheduling to minimize workforce turnover and contractual disruptions. Thus, efficient workforce assignment may lead to reductions in quality of care through compromised care continuity. Using a novel data set from a large multi-state freestanding home health agency, this chapter quantifies the effect of within-setting care discontinuity caused by workforce assignment on hospital readmissions, a common quality of care marker.
+Continuity of care across settings involves, by definition, a multi-professional pathway that emphasizes the need for care coordination. On the other hand, continuity of care within a setting is achieved by workforce allocation, and in particular a continuous relationship between a patient and a single health care professional who is the sole source of care and information for the patient. However, the achievement of continuity of care requires costly deployment of resources. Ensuring smooth transitions in care and effective transmission of information between providers likely imposes massive constraints that interfere with the goal of optimizing scheduling to minimize workforce turnover and contractual disruptions. Thus, efficient workforce assignment may lead to reductions in quality of care through compromised care continuity. Using a novel data set from a large multi-state freestanding home health agency, this paper quantifies the effect of within-setting care discontinuity caused by workforce assignment on hospital readmissions, a common quality of care marker.
 Spending due to unplanned hospital readmissions was estimated at \$17.4-\$25 billion annually, which would translate to 16-22\% of the total Medicare spending on inpatient hospital services \citep{PricewaterhouseCooper2008, Jencks2009}.
 The national all-cause potentially preventable readmission rates for this population was 11\% in 2014 \citep{MedPAC2016medicare}.
-Starting in October 2012, the Center for Medicare and Medicaid Services (CMS) lowered its payment to hospitals with excess readmissions over the national average by up to 3\%.\footnote{The amount of reduction in payment was up to 1 percent in FY 2013, the first year of the HRRP, and up to 2 percent in FY 2014.}
+Starting in October 2012, the Center for Medicare and Medicaid Services (CMS) lowered its payment to hospitals with excess readmissions over the national average by up to 3\%.\footnote{The amount of reduction in payment was up to 1 percent in FY 2013, the first year of the penalty (so-called the Hospital Readmissions Reduction Program), and up to 2 percent in FY 2014.}
 %https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/NationalHealthExpendData/NationalHealthAccountsHistorical.html
 Facing financial penalties, hospitals use management strategies and modifications to their organizational structure to prevent hospital readmissions.
 For example, hospitals vertically integrated with post-acute care providers such as home health agencies (HHAs) to improve post-discharge care coordination, as increased reliance on home health has been shown to be associated with a reduction in hospital readmissions \citep{Polsky2014}.\footnote{\citet{Naylor1999} discuss hospitals that instituted programs to provide patient education before discharge, increased patient follow-up, and expanded the use of health information technology to track readmissions and integrate care across settings; \citet{Kim2015} show that admitting ER patients to the Intensive Care Units could substantially reduce hospital readmissions, and therefore suggest implementing admission criteria based on objective measures of patient risk as well as physicians' discretionary information as a promising way to decrease hospital readmissions.
@@ -103,7 +104,7 @@ Thus, post-acute care providers can impact the frequency of hospital readmission
 %However, there is little research on the role of workforce assignment affecting care continuity post-discharge.
 %\footnote{There exists nursing literature showing the cross-sectional episode-level relationships between nursing care concentration and hospitalization rates and other outcomes \citep{Russell2011}. Our results shown later are consistent with these previous studies.
 %}
-%This chapter takes a first step in filling this gap by examining the causal effect of discontinuity of post-acute care caused by provider switches on hospital readmissions using a novel data set from a large multi-state freestanding home health agency.
+%This paper takes a first step in filling this gap by examining the causal effect of discontinuity of post-acute care caused by provider switches on hospital readmissions using a novel data set from a large multi-state freestanding home health agency.
 
 We focus on home health care as it is an important and rapidly growing segment of the health care delivery system.
 Over the past decade, payment for home health services more than doubled \citep{MedPAC2016hh}.
@@ -116,39 +117,39 @@ However, with readmission penalties and the emphasis on population health manage
 Freestanding agencies often view the ability to mitigate hospital readmission as a key competitive differentiator in contracting with hospitals \citep{Worth2014}.
 Therefore, it is important to uncover potential mechanisms that lead to better care continuity and patient outcomes.
 
-In this chapter, we use novel data containing over 43,000 home health patient episodes and spanning 89 autonomously run home health offices in 16 states. The data provide detailed information, which includes visit logs for all Medicare patients, work logs and human resources data for all home health providers, as well as all patient demographic and health risks collected as part of the Outcome and Assessment Information Set (OASIS) required by the CMS.
+In this paper, we use novel data containing over 43,000 home health patient episodes and spanning 89 autonomously run home health offices in 16 states. The data provide detailed information, which includes visit logs for all Medicare patients, work logs and human resources data for all home health providers, as well as all patient demographic and health risks collected as part of the Outcome and Assessment Information Set (OASIS) required by the CMS.
 In addition, our data are linked with individual patients' hospital readmissions.
 %contain individual patients' dates of hospital readmissions.
 We measure care discontinuity by handoffs between skilled nurses over a patient's episode of care, which are immediately affected by offices' workforce allocation decisions.\footnote{Skilled nurses refer to registered nurses (RNs) or licensed practical nurses (LPNs).
 }
 We estimate a plausibly causal effect of provider handoffs on hospital readmissions using day-to-day human resources data on providers' absence, assignment to an alternative office, and job termination to instrument for handoffs.
 Unplanned employee absences in the US health care and social assistance sector consumed 1.9\% of all scheduled work hours in 2016 \citep{BLS2017}.
-To uncover the mechanisms underlying the effect of handoffs, we also examine whether the probability of readmission is affected by the frequency and sequencing of handoffs.
+To uncover the mechanisms underlying the effect of handoffs, we also examine whether handoffs affect hospital readmissions differently by underlying patient severity and by the frequency and sequencing of handoffs, respectively, and whether handoffs affect time to readmission.
 
 
 Estimating the effect of handoffs in home health care on the probability of readmissions raises endogeneity concerns.
-While we observe a great deal of patient characteristics as well as labor supply conditions, the data do not provide us with the actual care plan for each patient's episode of care. The care plan is plausibly linked to unobserved patient severity and hence to the risk of hospital readmissions. As we discuss in the chapter, it is challenging to determine the sign of the omitted variable bias caused by unobserved patient characteristics.
-To address this endogeneity problem, we use detailed provider-day level data on nurses' availability to instrument for both handoffs and the probability of receiving a visit. The instrument exploits the fact that skilled nurses' absence affects rehospitalization only through its effect on care discontinuity either through missed visits or handoffs. In addition, and as explained in greater detail in our methods section, we control for the dynamic changes in patients' health status during a home health episode by limiting the variation in our data to reflect the number of days since the last nurse visit; the mean interval of days between two consecutive nurse visits; the passage of time from the beginning of the episode; the relationship stock with various nurses during the episode; as well as supply and demand characteristics at the nurse and office level. Together with the patient's initial health assessment, these controls help mitigating potential confounding effects.
+While we observe a great deal of patient characteristics as well as labor supply conditions, the data do not provide us with the actual care plan for each patient's episode of care. The care plan is plausibly linked to unobserved patient severity and hence to the risk of hospital readmissions. As we discuss in the paper, it is challenging to determine the sign of the omitted variable bias caused by unobserved patient characteristics.
+To address this endogeneity problem, we use detailed provider-day level data on nurses' availability to instrument for both handoffs and the probability of receiving a visit. The identification assumption is that skilled nurses' absence affects rehospitalization only through its effect on care discontinuity either through missed visits or handoffs. In addition, and as explained in greater detail in our methods section, we control for the dynamic changes in patients' health status during a home health episode by limiting the variation in our data to reflect the number of days since the last nurse visit as well as supply and demand characteristics at the nurse- and office-day level. Together with the patient's initial health assessment, these controls help mitigating potential confounding effects.
 
 Using the cross-sectional variation,
-we find that patients experiencing nurse handoffs are 19\% more likely to be readmitted to a hospital.
-This estimate more than doubles in magnitude when using the instrumental variables approach.
+we find that patients experiencing nurse handoffs are 24\% more likely to be readmitted to a hospital.
+This estimate more than doubles in magnitude when we use the instrumental variables (IV) method.
 %up from the baseline mean readmission rate 0.0068, which translates to a 22\% higher probability of readmission.
 %When we instrument the indicator variables for having nurse handoffs and receiving a nurse visit with measure of breaks in availability for the nurse who visited each patient in the preceding visit, the estimated effect of handoffs on the likelihood of readmission rises to 0.29 percentage points. This translates to a 42\% increase in the probability of readmission due to nurse handoffs.
 Our results are robust to controlling for days since last visit as well as a rich set of patients' health risk, demographic, and comorbidity factors, office fixed effects, time fixed effects, and home health day fixed effects.
 Controlling for home health day fixed effects is especially important because the probabilities of hospital readmissions and handoffs rapidly decline over the course of a home health episode.
+Furthermore, in our analysis of potential mechanisms, we find that handoffs are more detrimental for high-severity patients and expedite hospital readmission. The frequency and sequencing of handoffs also affect the likelihood of rehospitalization with the first handoffs having the strongest effect on increasing hospital readmissions.
 
-To explore potential mechanisms underlying this effect, we analyze finer partitions of handoffs by frequency and sequencing.
+
 %examine the heterogeneity in the effect of nurse handoffs by their sequence within a patient episode and by the employment status of nurses a patient is handed off to. For the latter, we hypothesize that salaried workers have higher human capital due to sorting of higher-quality workers into salaried positions, and this would lead to a higher likelihood of readmission when a salaried nurse hands off a patient to a piece-rate nurse.
-We find the effect of first handoffs to have the strongest effect on increasing the likelihood of hospital readmissions, with the second and third handoffs having effects that are smaller in magnitude.
-The effect of having four or more handoffs is no longer statistically significant.
-Our finding that initial handoffs are more impactful than subsequent ones, controlling for elements of the patient episode dynamics, suggests that to effectively reducing hospital readmissions, it is important to ensure provider continuity throughout the entire episode of care.
+% We find the effect of first handoffs to have the strongest effect on increasing the likelihood of hospital readmissions, with the second and third handoffs having effects that are smaller in magnitude.
+% The effect of having four or more handoffs is no longer statistically significant.
+% Our finding that initial handoffs are more impactful than subsequent ones, controlling for elements of the patient episode dynamics, suggests that to effectively reducing hospital readmissions, it is important to ensure provider continuity throughout the entire episode of care.
 
 A number of potential mechanisms may account for the effect of provider handoffs on hospital readmissions.
 First, information transmission between providers involved in a handoff may be incomplete and lead to potentially inappropriate care \citep{Riesenberg2009}.
 Second, holding the number of visits constant, handoffs lower the time spent with each individual provider, and hence depreciates the relationship stock built between providers and patients, which has been shown to improve patient outcomes \citep{Saultz2005}.
-Third, repeated visits enhance the development of patient-specific knowledge, which has limited applicability to other patients.
-Therefore, patients experiencing a handoff lose access to providers most familiar with their case. For example, previous literature emphasizes the development of firm- or patient-specific skills among cardiac surgeons and radiologists, which are associated with a reduction in patient mortality rates \citep{Huckman2006}.
+Third, repeated visits enhance the development of patient-specific knowledge, which has limited applicability to other patients. Therefore, patients experiencing a handoff lose access to providers most familiar with their case. For example, previous literature emphasizes the development of firm- or patient-specific skills among cardiac surgeons and radiologists, which are associated with a reduction in patient mortality rates \citep{Huckman2006}.
 The three channels above serve as theoretical underpinning for our findings of a positive link between provider handoffs and hospital readmissions.
 
 
@@ -160,13 +161,14 @@ The three channels above serve as theoretical underpinning for our findings of a
 %On the other hand, \citet{Aiken2013} found no statistically significant difference in mortality when comparing hospital units run by a higher versus lower share of supplemental registered nurses.
 %Our analysis of mechanisms does not account for the alternative for handoff-driven piece-rate nurse visit--ether no visit or increased workload for salaried nurses. Such increases in workload intensity have been shown to adversely affect patients' wellbeing \citep{Kc2009, Kuntz2014, BerryJaeker2016}.
 
-In summary, this chapter provides the first set of results linking care discontinuity in a post-acute care setting to increased risk of hospital readmissions.
-To date, most of the literature on care continuity has focused on transitions of care across settings, especially on care transitions from hospitals to post-acute care facilities \citep{Naylor1999}.
-Work on continuity of care within a setting has focused almost exclusively on patient handoffs in shift-based environments, which are shown to be associated with low quality of care marked by slowdown in service delivery, medical and surgical errors, malpractice cases with communication problems, and (potentially preventable) adverse patient outcomes \citep{Laine1993, Petersen1994, Riesenberg2009}.
-However, the external validity of results in a shift-based environment may be weak when considering non-shift based environments, such as home health.  Shift-based handoffs are inevitable due to a trade-off between the length of a shift and the number of handoffs. When physician or nurse shifts are lengthened, a patient is more likely to see the same provider during the course of treatment. At the same time, a longer shift would increase provider fatigue and the risk of making mistakes, especially, towards the end of long shifts \citep{Brachet2012}. In contrast, in home health care, handoffs are largely avoidable through coordinated scheduling given that providers typically visit patients with several days in between. In our data, 38\% of patients are seen consistently by a single nurse throughout their episode of care. Hence, zero handoffs are frequent in a non-shift based environment.  At the same time, prioritizing continuity of care may be costly in that it may come at the expense of flexibility in scheduling, employee satisfaction, and ultimately retention. 
 
-Quantifying the effect of discontinuous home health care has important implications for the use of workforce assignment in improving quality of care, and provides a currency to assess the importance of prioritizing care continuity over other goals typically achieved through schedule architecture. Previous literature has focused almost exclusively on shift-based provider handoffs in large healthcare facilities. Moreover, the literature has focused mostly on nurse staffing levels rather than assignment structure among the workforce strategies used by health care delivery organizations \citep{Aiken2002, Bae2010, Needleman2011, Cook2012, Lin2014, Lu2016, Hockenberry2016}.
-The outline of the article is as follows. In Section~\ref{sec:databig}, we describe the data and present our measures of care discontinuity. In Section~\ref{sec:empr_strategy}, we discuss our identification strategy. In Section~\ref{sec:results}, we discuss our baseline empirical results as well as our IV estimation results. In Section~\ref{sec:mechanism}, we explore the sequencing of handoffs in explaining the relationships between handoffs and the rehospitalization outcome. Section~\ref{sec:conclusion} concludes the chapter.
+Contributing to the literature on the impact of nursing attributes on patient health outcomes \citep{Aiken2002, Bae2010, Needleman2011, Cook2012, Lin2014, Lu2016, Hockenberry2016}, this paper provides the first set of results linking workforce assignment decisions in the post-acute care setting to hospital readmissions.
+Most of the literature on care continuity has focused on transitions of care across settings, especially on care transitions from hospitals to post-acute care facilities \citep{Naylor1999}.
+Work on continuity of care within a setting has focused almost exclusively on patient handoffs in shift-based environments, which are shown to be associated with low quality of care marked byß slowdown in service delivery, medical and surgical errors, malpractice cases with communication problems, and (potentially preventable) adverse patient outcomes \citep{Laine1993, Petersen1994, Riesenberg2009}.
+However, the external validity of results in a shift-based environment may be weak when considering non-shift based environments, such as home health.  Shift-based handoffs are inevitable due to a trade-off between the length of a shift and the number of handoffs. When physician or nurse shifts are lengthened, a patient is more likely to see the same provider during the course of treatment. At the same time, a longer shift would increase provider fatigue and the risk of making mistakes, especially, towards the end of long shifts \citep{Brachet2012}. In contrast, in home health care, handoffs are largely avoidable through coordinated scheduling given that providers typically visit patients with several days in between. In our data, 38\% of patients are seen consistently by a single nurse throughout their episode of care. Hence, zero handoffs are frequent in a non-shift based environment.  And yet, prioritizing continuity of care may be costly in that it may come at the expense of flexibility in scheduling, employee satisfaction, and ultimately retention. Therefore, quantifying the effect of discontinuous home health care has important implications for the use of workforce assignment in improving quality of care, and provides a currency to assess the importance of prioritizing care continuity over other goals typically achieved through schedule architecture.
+
+
+The outline of the article is as follows. In Section~\ref{sec:databig}, we describe the data and present our measures of care discontinuity. In Section~\ref{sec:empr_strategy}, we discuss our identification strategy. In Section~\ref{sec:results}, we discuss our baseline empirical results as well as our IV estimation results. In Section~\ref{sec:mechanism}, we explore the potential mechanismss underlying the relationships between handoffs and rehospitalization. Section~\ref{sec:conclusion} concludes the paper.
 
 %Moreover, our finding that
 %handoffs from salaried to piece-rate paid contingent nurses raise rehospitalization among home health patients more than other handoffs suggests that contingent nurses may adversely affect quality of care. While this evidence is in line with previous literature examining patient outcomes and satisfaction in hospitals and nursing homes \citep{Lu2016, Hockenberry2016}, it does not account for counterfactuals such as having no visit or having salaried workers' workload be increased, which may have worse effects on patients \citep{Kc2009, Kuntz2014, BerryJaeker2016}.
@@ -190,12 +192,12 @@ Quantifying the effect of discontinuous home health care has important implicati
 %The instrument set is used to address a concern that given that we do not observe planned visit schedules and daily level of patient severity, relatively sicker patients are more likely to have a nurse visit, which in turn increases the probability of having a handoff. Therefore, we may overstate the contribution of handoffs to hospital readmissions.
 %The instrument set of the daily availability of the nurse who visited the patient in the last time exploits the fact that whether a nurse is working, absent, or on vacation is independent of patients' health status.
 
-% Organization of chapter
+% Organization of paper
 %The outline of the article is as follows.
 %In Section~\ref{sec:databig}, we describe the data and report summary statistics, and discuss our measures of care discontinuity.
 %In Section~\ref{sec:ols}, we report our empirical results starting with the baseline estimation results of the effect of handoffs on rehospitalization using cross-sectional analyses to a discussion of the identification challenges, IV estimation, instruments of our choice, and IV estimation results.
 %In Section~\ref{sec:mechanism}, we explore two potential mechanisms explaining the relationships between handoffs and the rehospitalization outcome and report our cross-sectional analysis results.
-%Section~\ref{sec:conclusion} concludes the chapter.
+%Section~\ref{sec:conclusion} concludes the paper.
 
 %Our key contribution is to use the rich information from a novel data set containing the visit logs for all Medicare patients and work logs for all providers to measure discontinuity of care in the most straightforward way by provider handoffs at the patient-day level, and link them with individual patients' readmission outcomes.
 %Our data also provide detailed patient characteristics information collected as a part of the Outcome and Assessment Information Set (OASIS) required by the CMS, allowing for controlling for rich sets of patients' health risk factors.
@@ -240,7 +242,7 @@ Quantifying the effect of discontinuous home health care has important implicati
 \section{Data} \label{sec:databig}
 
 \subsection{Data and Summary Statistics} \label{sec:data_ch3}
-This chapter uses a novel and rich data set of home health visits, patient health status assessment, and provider work logs as well as indicators for patient hospital readmissions.
+This paper uses a novel and rich data set of home health visits, patient health status assessment, and provider work logs as well as indicators for patient hospital readmissions.
 We obtained data on all home health stays for Medicare patients from a large for-profit freestanding home health company, which provides home health care services in 89 offices in 16 states.\footnote{These offices are located in 16 states: Arizona, Colorado, Connecticut, Delaware, Florida, Hawaii, Massachusetts, Maryland, North Carolina, New Jersey, New Mexico, Oklahoma, Pennsylvania, Rhode Island, Virginia, Vermont.
 }\footnote{\citet{David2013} show that in vertically integrated HHAs owned by hospitals, post-acute care patients are admitted to HHAs in earlier stages of recovery without a significant difference in readmission rates.
 }
@@ -422,9 +424,9 @@ Beyond an initial assessment in the first visit, home health agencies do not sys
 Therefore, we cannot directly control for the dynamic changes in patients' health.
 However, we use a number of dynamic proxies of patients' real-time health status.
 First, we control for whether a patient has a nurse visit on a given day, $V_{ikt}$, as a sicker patient is more likely to have a nurse visit.
-Second, we control for the number of days since last visit by a nurse in the vector $X_{ikt}$ together with the patient-level mean interval of days between consecutive nurse visits in the vector $P_{ik}$. The variation in the number of days since last nurse visit holding constant the expected frequency of visits during the episode could capture dynamic shifts in the patient's severity since a nurse's additional visit only after a short period of time may suggest that the patient has gotten sicker on that day. Third, for similar reasons, we include in the vector $X_{ikt}$ of patient-office-day level variables the number of days since last visit by any provider since the greater the gap between any home health visits, the more likely a patient is to have a readmission controlling for the average frequency of nurse visits.  Fourth, we control for the cumulative number of nurse visits provided to control for the effect of dynamic care intensity.\footnote{Additional potentially relevant variables to include in the vector $X_{ikt}$ are the cumulative number of unique nurses the patient has seen by home health day $t$ and the number of times each nurse has seen the patient. These variables capture an aspect of care disruption that is potentially more meaningful for patients experiencing a large number of handoffs. For example, a patient experiencing six handoffs may be cared for by six different nurses, or may experience multiple handoffs between the same two nurses. Our results are robust and even stronger when controlling for these two additional variables (these results are available upon request).}
+Second, we control for the number of days since last visit by a nurse in the vector $X_{ikt}$ together with the patient-level mean interval of days between consecutive nurse visits in the vector $P_{ik}$. The variation in the number of days since last nurse visit holding constant the expected frequency of visits during the episode could capture dynamic shifts in the patient's severity since a nurse's additional visit only after a short period of time may suggest that the patient has gotten sicker on that day. Third, for similar reasons, we include in the vector $X_{ikt}$ of patient-office-day level variables the number of days since last visit by any provider since the greater the gap between any home health visits, the more likely a patient is to have a readmission controlling for the average frequency of nurse visits.  Fourth, we control for the cumulative number of nurse visits provided to control for the effect of dynamic care intensity.\footnote{Our results are robust to excluding the number of days since last visit by any provider, the patient level mean interval of days between consecutive nurse visits, and the cumulative number of nurse visits provided. These results appear in Table~\ref{tab:iv_noendog} in Appendix~\ref{appendix:iv_noendog}.}\footnote{Additional potentially relevant variables to include in the vector $X_{ikt}$ are the cumulative number of unique nurses the patient has seen by home health day $t$ and the number of times each nurse has seen the patient. These variables capture an aspect of care disruption that is potentially more meaningful for patients experiencing a large number of handoffs. For example, a patient experiencing six handoffs may be cared for by six different nurses, or may experience multiple handoffs between the same two nurses. Our results are robust and even stronger when controlling for these two additional variables (these results are available upon request).}
 
-In the vector $P_{ik}$ of patient level variables, we also include the following three groups of variables to adjust for underlying health risks of patients. First, a set of indicator variables associated with high risk of hospitalization, including history of 2 or more falls in the past 12 months, 2 or more hospitalizations in the past 6 months, a decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5 or more medications, and others.
+In the vector $P_{ik}$ of patient level variables, we also include the following three groups of variables to adjust for underlying health risks of patients. First, a set of indicator variables associated with high risk of hospitalization, including history of 2 or more falls in the past 12 months, 2 or more hospitalizations in the past 6 months, a decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5 or more medications, and others.\footnote{Over two thirds of patients were visited within 24 hours of hospital discharge (with 90\% of patients visited within 72 hours of hospital discharge. Similar results were obtained when we control for the number of days since hospital discharge. These results are reported in Table~\ref{tab:iv_days_fromhospdc} in Appendix~\ref{appendix:dist_days_fromhospdc}.}
 Second, a set of indicator variables for patient demographics: age dummies for each age 66-94 and age 95 or higher (reference group is age 65), gender, race, insurance type, an indicator for having no informal care assistance available, and an indicator for living alone.\footnote{Insurance types include Medicare Advantage (MA) plans with a visit-based reimbursement, MA plans with an episode-based reimbursement, and dual eligible with Medicaid enrollment (reference group is Medicare FFS).
 %In the data, MA plans make per-visit payments to 75\% of episodes and per-episode payments to 25\% of episodes.
 }
@@ -469,7 +471,7 @@ $$[H_{ikt}, V_{ikt} | X_{ikt}, P_{ik}, W_{kt}, D_t] \perp U_{ikt}.$$
 Even though we control for a large number of patient, nurse, office and day characteristics as we described in Section~\ref{sec:spec}, we lack clear documentation of the care plan for each patient-episode of care. Consequently, we use an indicator variable for actual nurse visits, $\hat{V}_{ikt}$, as opposed to planned ones, $V_{ikt}$. However, whether a visit is actually provided is plausibly linked with unobserved patient severity and hence with the risk of hospital readmissions, thus resulting in $[H_{ikt}, \hat{V}_{ikt} | X_{ikt}, P_{ik}, W_{kt}, D_t] \notperp U_{ikt}.$
 
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\linewidth]{identification.png}
@@ -543,9 +545,10 @@ These measures are Charlson comorbidity index, overall status likely to remain f
 For this exercise, we define each nurse's set of patients on each day as those who are currently or last visited by the nurse and who are not handed off to another nurse, rehospitalized, or discharged on that day. We separately report these measures against the number of days prior to inactivity by whether the inactivity is short absence (i.e. not providing any visits for 1-2 consecutive days), medium absence (i.e. not providing any visits for 3-14 consecutive days), and long absence/attrition (i.e. not providing any visits for 15 or more consecutive days or exiting the workforce).
 The variation in severity measures is driven by compositional changes in types of patients under a nurse's care.
 Figure~\ref{fig:severity_byday} shows that there is little variation in patients' severity leading up to nurse inactivity, and if anything, most plots show a slight decline in measures in the day or two leading to absence, suggesting that nurses are more likely to take days off when their patient base is stable.
+Alternatively, it could be the case that offices assign less severe cases to nurses expecting to become inactive. Patients in better health are less likely to be readmitted to the hospital, and if inactivity-driven handoffs are more likely to occur for healthier patients, the effect of handoff on readmission is likely to be biased toward zero. Thus, our estimate of the effect would be conservative.
 Furthermore, these trends indicate that as nurses approach a period of inactivity, they do not selectively discharge healthier patients and subsequently raise the severity mix of the remaining patients under their care.
 
-Second, there is a concern than nurses' burnout from working extended hours and seeing many patients per day may induce them to become inactive, and at the same time, fatigue and burnout may adversely affect patient outcomes \citep{Aiken2002}. Figure~\ref{fig:dnv_byday2abs} plots the number of patient visits per day as a function of days prior to inactivity. We find that nurses' workload consistently declines before a period of inactivity, with 6 to 7 patient visits per day more than a week prior to inactivity and less than 3 patient visits per day in the three days leading to absence.
+Second, there is a concern than nurses' burnout from working extended hours and seeing many patients per day may induce them to become inactive, and at the same time, fatigue and burnout may adversely affect patient outcomes \citep{Aiken2002}. Figure~\ref{fig:dnv_byday2abs} plots the number of patient visits per day as a function of days prior to inactivity. We find that nurses' workload consistently declines before a period of inactivity, with 6 to 7 patient visits per day more than a week prior to inactivity and less than 3 patient visits per day in the three days leading to absence.\footnote{The reduction in workload before a period of inactivity may be a sign of higher levels of nurses' burnout, through missed appointments. In this case, burnout may reinforce the positive association between handoffs and readmission. Nevertheless, the bias may work in the opposite direction. Burnout is often viewed as a process and is likely to manifest itself in quality deteriorations that may result in hospital readmission while nurses are \textit{active}. Then a handoff may be better for patients than being seen by an active burned out nurse. Moreover, the harmful effect of burnout may be realized even before handoffs occur, in which case those patients would drop out of the sample before we can attribute their readmission to handoffs.}
 %\textcolor{red}{Similarly, the number of patients under a nurse's care declines as the day approaches nurse inactivity.\footnote{This plot is unreported but mimics Figure~\ref{fig:dnv_byday2abs}.} This
 %
 %Third, nurses' absence might be anticipatory in a way that may invalidate or weaken the power of absence as an instrument. One possible case is that nurses plan their inactivity in advance and hand off patients even before they go inactive. This would weaken the predictive power of instruments in the first-stage regression since handoffs are less likley to occur during nurses' actual inactive days.
@@ -594,7 +597,6 @@ When restricting to 30-day rehospitalizations, the basis for hospital readmissio
 
 \subsection{Results from the Instrumental Variables (IV) estimation} \label{sec:iv}
 
-
 Table~\ref{tab:iv} reports IV estimation results from using the vector of instruments we discuss in Section~\ref{sec:availability}.\footnote{Table~\ref{tab:iv_robust} in Appendix~\ref{appendix:lws_dist_alt} shows the IV estimation results using an alternative definition of medium absence, as explained in Section~\ref{sec:availability}.
 }
 We estimate a two-stage least square (2SLS) using a two-step efficient generalized method of moments (GMM) estimator. Panels A and B report the first-stage results for the indicator variables for having a nurse handoff and for a nurse visit, respectively.
@@ -606,14 +608,26 @@ Panel C reports the second-stage results regressing hospital readmission per-pat
 We find handoffs to raise hospital readmissions, with a statistically significantly coefficient of that is more than twice in magnitude compared to our cross-sectional findings--54\% versus 24\%.
 There is no statistically significant residual effect of having a skilled nursing visit on the probability of hospital readmission.
 Panel C reports the p-values for the Sargan-Hansen J-statistic values of 0.4-0.5, which suggests that we cannot reject the null hypothesis that the instrument set is exogenous.
-%
+
+
+% {\color{red}We are estimating the local average treatment effect (LATE) of handoffs triggered by nurse inactivity on hospital readmissions. 45\% of handoffs occurred while the patient's last visiting nurse was inactive and 55\% of handoffs occurred on days the patient's last visitng nurse was present (i.e. active). Handoffs occurring due to nurse absence may be more likely to be unplanned. Moreover, the first-stage results in Table~\ref{tab:iv} show that patients were 13-50\% more likely to experience handoffs when nurses were inactive for various reasons than when nurses were active, conditional on their underlying patient risks and office capacity. Plausibly, unplanned handoffs may result in poor transfer of relevant information and therefore may be more harmful to patients.}
+
 %To address the issue of a competing risk of rehospitalization from having no visits when the patient is ``supposed'' to have a visit, we control for the number of days since last nurse visit along with the average frequency of nurse visits.
 %This is done by including in $W_i$ the patient-level mean number of days between two consecutive nurse visits as a proxy of the frequency of planned visits, which is unobservable to us; and including in $X_{it}$ the number of days since the last nurse visit and the number of days since the last visit by any provider (for any disciplines).
 %In addition, we control for the size of office on each day using the number of ongoing episodes in the office-day and the number of nurses working in the office-day in $W_{kt}$.
 
-\subsection{Decomposition of the Effect of Handoffs} \label{sec:mechanism}
+\section{Mechanisms} \label{sec:mechanism}
 
-To explore a potential mechanism behind the overall effect of handoffs on the likelihood of hospital readmissions we find in Section~\ref{sec:results}, we decompose the effect by the frequency and sequencing of handoffs.
+To explore potential mechanisms behind the overall effect of handoffs on the likelihood of hospital readmissions we find in Section~\ref{sec:results}, we explore three potential mechanisms. First, we examine whether handoffs affect hospital readmissions differently by underlying patient severity. Second, we decompose the effect by the frequency and sequencing of handoffs. Third, we focus on a subset of home health visits which resulted in a hospital readmission, and examine whether handoffs affect the number of days from last home health visit to readmission.
+
+\subsection{The Heterogeneous Effect of Handoffs by Patient Severity}
+To test for heterogeneous effects of handoffs, we re-estimate the main model~\ref{eq:regeq} for three risk groups of patients. The first group includes all patients indicated as temporarily facing high risks. The second group includes all patients indicated as likely to remain in fragile condition. The third group includes all patients taking five or more medications. The first two groups are mutually exclusive with the first group showing relatively lower level of severity than the second. Table~\ref{tab:iv_byseverity} presents the results from the most saturated specification for the three groups above.
+
+Results for the first group are very similar to the original results reported for all patients in Table~\ref{tab:iv}. In comparison, the second group of fragile patients in column 2 and the third group of patients who were reliant on five medications or more---typically due to multiple chronic conditions---in column 3, were more adversely affected by handoffs.
+Fragile patients and patients taking multiple medications were 59\% and 57\% more likely to be readmitted after experiencing handoffs, respectively.
+
+
+\subsection{Decomposition of the Effect of Handoffs by Frequency and Sequencing}
 Patients who experience more handoffs within the same time window may be more likely to become at risk of rehospitalization because the potential harm from provider switches is magnified.
 Nevertheless, the sequence of handoffs may matter.
 For example, the first handoff may have a weak effect on rehospitalization but when a critical mass of handoffs takes place, the patient's risk of rehospitalization could increase, suggesting a convex relationship between the handoff number and readmissions.
@@ -632,6 +646,15 @@ These results suggest a concave relationship between the frequency of handoffs a
 Note that this finding is not mechanically driven by sicker patients receiving more visits and having more handoff chances on the same home health day since we control for the cumulative number of nurse visits on each day.
 %, we avoid the possibility that sicker patients receiving more visits happen to have more handoff oppotunities, producing a stronger effect of second handoffs on the probability of readmissions.
 %However, after controlling for the cumulative number of visits up to each day for each patient, we obtain qualitatively same results, as shown in Table~\ref{tab:ols_mechanism_robust}. We even find the steepness of a decrease in marginal effects of a higher number of handoffs to be greater.
+
+\subsection{The Effect of Handoffs on the Number of Days to Readmission}
+
+Next we investigate the effect of handoffs on time to hospital readmission from the last visit among all patients who had a readmission. We restrict our sample to 7,269 visits that were followed by a hospital readmission. We divide these visits into those involving a handoff and those who did not. Figure~\ref{fig:days2readmit} presents a quantile-quantile plot comparing the distributions of the days-to-readmission from the last nurse visit of patients with and without a nurse handoff. As points lie mostly below the 45 degree line, handoffs are associated with shorter days-to-readmission.
+
+In addition, we repeat our specification in equation~\ref{eq:regeq} by replacing the readmission indicator with days-to-readmission.
+% Since we focus on the last nurse visit for each patient episode, we exclude the endogenous indicator variable of having a nurse visit from our model.
+For patient-day or office-day level variables, we use data for the day of last nurse visit. Table~\ref{tab:days2readmit_iv} reports the results, indicating 9\% reduction in the number of days from last visit to hospital readmission following a handoff. This decrease is small in absolute magnitude given the mean number of days to readmission of around 4 days. However, our estimated effects are statistically significant at the 1 percent level.
+
 
 
 %As offices use different employment arrangements with nurses, we investigate a second potential mechanism--``who hands off the patient to whom.''
@@ -681,11 +704,19 @@ Note that this finding is not mechanically driven by sicker patients receiving m
 %\end{table}
 
 
-\section{Conclusion} \label{sec:conclusion}
+\section{Discussions and Conclusions} \label{sec:conclusion}
 
-Greater continuity and coordination of care are an important mechanism in preventing hospital readmissions \citep{Naylor1999}, and post-acute care providers can achieve it through workforce assignment strategies prioritizing care continuity. However, there is little research on the role of workforce assignment affecting care continuity post-discharge. This chapter takes a first step in filling this gap by examining the plausibly causal effect of discontinuity of post-acute care caused by provider switches on hospital readmissions using a novel data set from a large multi-state freestanding home health agency.
-Our findings highlight the importance of care continuity prioritization through worker assignment in improving a key competitive performance metric desirable to many health care systems---reduction in hospital readmissions. Studying the elderly Medicare population, we find handoffs to increase hospital readmissions by 54\% when instrumenting for handoffs using breaks in availability of previously assigned nurses. A calibration exercise suggests that one in four hospital readmissions during a home health episode would be avoided if nurse handoffs were completely eliminated.
-Furthermore, we find that patients experiencing handoffs for the first time are more likely to have a hospital readmission relative to those experiencing such handoffs for the second and third time. Our results suggest that preventing handoffs altogether would be an effective way to reduce the likelihood of hospital readmissions. These findings have important implications for scheduling strategies, contracting priorities and regulatory oversight. 
+Greater continuity and coordination of care are an important mechanism in preventing hospital readmissions \citep{Naylor1999}, and post-acute care providers can achieve it through workforce assignment strategies prioritizing care continuity. However, there is little research on the role of workforce assignment affecting care continuity post-discharge. This paper takes a first step in filling this gap by examining the plausibly causal effect of discontinuity of post-acute care caused by provider switches on hospital readmissions using a novel data set from a large multi-state freestanding home health agency.
+
+Our findings highlight the importance of care continuity prioritization through worker assignment in improving a key competitive performance metric desirable to many health care systems---reduction in hospital readmissions. Studying the elderly Medicare population, we find handoffs to increase hospital readmissions by 54\% when instrumenting for handoffs using breaks in availability of previously assigned nurses.
+This estimate implies that a single handoff in home health increases the patients' likelihood of 30-day readmission by 16 percent while the 30-day hospital readmission rate has become a key marker of health care quality and performance as recent payment reforms tie the Medicare payment to hospitals with it.
+ Moreover, a calibration exercise suggests that one in four hospital readmissions during a home health episode would be avoided if nurse handoffs were completely eliminated.
+Furthermore, in our analysis of potential mechanisms, we find that handoffs are more detrimental for more severe patients. We also find that patients experiencing handoffs for the first time are more likely to have a hospital readmission relative to those experiencing such handoffs for the second and third time. Finally, among patients readmitted to the hospital, those experiencing a handoff on their last visit prior hospitalization were found to have a readmission faster.
+These findings suggest that preventing handoffs altogether would be an effective way to reduce hospital readmissions and improve quality of care, and have important implications for scheduling strategies, contracting priorities and regulatory oversight.
+
+Our IV estimates of the handoffs effects are identified from different lengths and types of nurse inactivity. To have a richer understanding of the implication of our results, it would be useful to examine what types of handoffs are affecting hospital readmissions the most. In particular, distinguishing, for example, unexpected/unplanned handoffs that are accompanied by poor transmission of information between nurses from other handoffs may be important, as the former may be more detrimental to patient health outcomes. However, due to data limitations, we cannot distinguish between planned and unplanned inactivity and similarly we cannot distinguish between planned and unplanned handoffs. While one may hypothesize that nurse inactivity is likely to result in unplanned handoffs, this is not at all obvious. First, planned inactivity is likely to involve a planned handoff. Moreover, unplanned handoffs, potentially triggered by worsening of a patient's health status, can occur when the previously assigned nurse is active but busy seeing other patients or when the nurse has a planned absence. Nevertheless, this paper shows that handoffs, whether planned or unplanned, generate discontinuity of care and increase hospital readmissions.
+
+Given the negative impact of handoffs on quality of care, it is important to understand how costly preventing handoffs is. First, it is important to note again that, in theory, handoffs can be eliminated in non-24/7 coverage situations. Nurses visit patients every couple of days, and in theory, there is no reason why the same nurse-patient pair would not remain constant throughout an episode of care. Of course, in practice, a number of elements makes this situation costly to implement. First, nurse availability maybe disrupted due to planned and unplanned leave, reassignment to other offices, and job separation. Second, operational efficiency and reimbursement policy calls for assigning nurses to tight geographical clusters, designed to minimize time spent traveling between patients. This means that the arrival of new patients may lead to re-optimization of distance algorithms and result in reshufflings of patients among nurses (i.e. handoffs). Lastly, poor patient-nurse match or unplanned patients' health needs may require home health offices to introduce new nurses into the care of patients, again, resulting in handoffs. These drivers of handoffs suggest that avoiding handoffs may be costly and in some case undesirable. Put differently, even though, on net, handoffs result in readmissions, some handoffs may benefit the patient. The solutions may involve lowering the nurses' caseload to allow more flexibility in scheduling, however, this would require hiring more nurses. Other solutions may involve the use of virtual health solutions, remote monitoring, telehealth technology, as well as a mix of skilled and unskilled workers may mitigate discontinuities in care caused by handoffs. Of course, these solutions are costly, their effectiveness has not been broadly tested and the vast majority of insurers would not reimburse home health providers for their provision. As healthcare shifts from volume based contracts to value based contracts, tying home health payment to performance measures such as reductions in hospital readmissions has the potential of leading home health companies to incorporate some of the solutions above.
 
 %Our findings highlight the importance of worker assignment that prioritize care continuity in improving a key competitive performance metric in the home health care delivery setting--hospital readmissions.
 %Studying the elderly population, we find handoffs to increase hospital readmissions by 61\% when instrumenting for handoffs using breaks in availability of a previously assigned skilled nurse.
@@ -734,7 +765,7 @@ Furthermore, we find that patients experiencing handoffs for the first time are 
 % figures ------------------------------------
 \begin{singlespace}
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \newpage
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
@@ -752,7 +783,7 @@ Most first skilled nurse visits and rarely second skilled nurse visits occur wit
 \label{fig:pct_rehosp}
 \end{figure}
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
 \centering
@@ -768,7 +799,7 @@ Most first skilled nurse visits and rarely second skilled nurse visits occur wit
 \label{fig:fr_cho_gt}
 \end{figure}
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
 \centering
@@ -785,7 +816,7 @@ Most first skilled nurse visits and rarely second skilled nurse visits occur wit
 
 
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
 \centering
@@ -850,7 +881,7 @@ The sample used for this figure includes all patients who receive home health ca
 %\end{figure}
 
 %\newpage
-%\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/new/} }
+%\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/new/} }
 %\begin{figure}[H]
 %\begin{minipage}{\linewidth}
 %\centering
@@ -889,7 +920,7 @@ The sample used for this figure includes all patients who receive home health ca
 %\end{figure}
 
 
-%\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+%\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 %\newpage
 %\begin{figure}[H]
 %\begin{minipage}{\linewidth}
@@ -915,7 +946,7 @@ The sample used for this figure includes all patients who receive home health ca
 %\end{figure}
 
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \newpage
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
@@ -941,7 +972,7 @@ The sample used for this figure includes all patients who receive home health ca
 \end{figure}
 
 
-\graphicspath{ {/Users/kimk13/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
+\graphicspath{ {/Users/kunheekim/Dropbox/Wharton/Research/Labor/gph/anhandoff/} }
 \newpage
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
@@ -963,7 +994,7 @@ The sample used for this figure includes all patients who receive home health ca
 \newpage
 {\footnotesize
 \begin{longtable}{lcc}
-\caption{Sample Summary Statistics for the Sample Period 2012--2015}
+\caption{Summary Statistics for the Sample Period 2012--2015}
 \label{tab:summstats}\\
 \toprule
 Variables & Mean & Std Dev \\
@@ -1169,7 +1200,7 @@ Total                    & 1,031,904 & 100.00     &                &            
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{OLS: Patients Experiencing a Handoff Are More Likely to Be Rehospitalized}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization}
 \label{tab:ols_handoffonly}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
@@ -1190,7 +1221,7 @@ Comorbidity controls & . & . & . & Yes \\
 \end{tabular*}
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.} This table presents linear probability models examining whether patients experiencing a handoff are more likely to be rehospitalized.
+	\item \emph{Notes.} This table presents OLS estimates of the effect of experiencing a handoff on the likelihood of rehospitalization.
 	%(A) whether patients experiencing a handoff are more likely to be rehospitalized; (B) whether the effect on the probability of rehospitalization differs by the frequency of handoff; and (C) whether patients experiencing a handoff from salaried to piece-rate workers are more likely to be rehospitalized.
 	An observation is a patient episode-day. Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode-days in the same office in parentheses.
 	In all panels and all columns, we control for the indicator for having a nurse visit, cumulative number of nurse visits provided, mean interval of days between two consecutive visits during the episode, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
@@ -1205,76 +1236,11 @@ Comorbidity controls & . & . & . & Yes \\
 
 
 
-
-%\begin{table}[H]
-%\centering
-%\caption{Summary statistics of instruments}
-%\label{tab:summstats_instr}
-%\begin{tabular}{lccc} \hline
-% & (1) & (2) & (3) \\
-%VARIABLES & N & mean & sd \\ \hline
-% &  &  &  \\
-%worked & 1.086e+06 & 0.648 & 0.477 \\
-%worked\_oo & 1.086e+06 & 0.0123 & 0.110 \\
-%vacation & 1.086e+06 & 0.0319 & 0.176 \\
-%absent\_short & 1.086e+06 & 0.281 & 0.449 \\
-%absent\_long & 1.086e+06 & 0.0158 & 0.125 \\
-%nomorework & 1.086e+06 & 0.0110 & 0.104 \\
-% &  &  &  \\ \hline
-%\end{tabular}
-%\end{table}
-
-%\clearpage
-%\begin{table}[H]
-%\centering
-%\footnotesize
-%\setlength\tabcolsep{5pt}
-%\caption{Absenteeism rate and the mean number of working days between inactivity by the average patients' severity and by the monthly workload}
-%\label{tab:iv_exog}
-%\begin{threeparttable}
-%{
-%\begin{tabular}{l c c c c c}
-%\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-%\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{5}{c}} %{lcccc}
-%\toprule
-%& & \multicolumn{4}{c}{Monthly number of visits}\\
-% &  &  Low & High & Low & High \\
-%& & (1) & (2) & (3) & (4) \\
-%\midrule
-%& & \multicolumn{2}{c}{A. Percent of absent days} &  \multicolumn{2}{c}{B. Mean number of days between absences}\\
-%\cmidrule(lr){3-4} \cmidrule(lr){5-6}
-%
-%\multirow{2}[3]{*}{\parbox{5cm}{(i) Mean Charlson comorbidity score}}
-%& Low  & 0.46 & 0.41  & 4.32  & 4.38  \\
-%& High & 0.50 & 0.47  & 4.20 & 4.45 \\
-%\midrule
-%\multirow{2}[3]{*}{\parbox{5cm}{(ii) Fraction of patients with a ``likely to remain fragile'' status}}
-%& Low  & 0.45 & 0.40  & 4.58  & 4.38  \\
-%& High & 0.50 & 0.47  & 4.10 & 4.45 \\
-%\midrule
-%\multirow{2}[3]{*}{\parbox{5cm}{(iii) Fraction of patients taking 5 or more medications}} & Low  & 0.44 & 0.39  & 4.60  & 4.40  \\
-%& High & 0.50  & 0.47 &4.14 & 4.44\\
-%\bottomrule
-%\end{tabular}
-%}
-%	\begin{tablenotes}[para,flushleft]
-%	\footnotesize
-%	\item \emph{Notes.} The unit of observation is a nurse-month. A low (high) category refers to months with low (high) values that are below (above) median of the corresponding variable across all months for each nurse.
-%	The sample used for this figure includes all patients who receive home health care---such as those aged less than 65, enrolled in non-Medicare plans, or having more than one 60-day episode during the home health care---all of whom we exclude in our sample restriction for the regression analysis.
-%	%The inactivity in Panel B refers to absence excluding attrition.
-%	\end{tablenotes}
-%\end{threeparttable}
-%\end{table}
-
-
-
-
-
 \begin{table}[H]
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Experiencing Handoffs Increases the Likelihood of Readmission}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization When Using Instruments}
 \label{tab:iv}
 \begin{threeparttable}
 {
@@ -1329,8 +1295,7 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.}  Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+	\item \emph{Notes.}  This table presents IV estimates of the effect of handoffs on the likelihood of rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
@@ -1339,7 +1304,7 @@ Demographic controls & . & . & Yes & Yes \\
 (5) Assigned to other office--providing visits exclusively in a different office; and
 (6) Attrition--day post labor termination for nurse according to HR records.
 	An observation is a patient episode-day.
-	Robust standard errors allowing for arbitrary correlation within the same office in parentheses.
+	Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode-days in the same office in parentheses.
 		In all specifications, we control for the cumulative number of nurse visits provided, mean interval of days between two consecutive visits, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
 	Columns (2)-(4) additionally control for hospitalization risk controls, demographic controls, and comorbidity controls, respectively.
 %	Hospitalization risk controls include dummies for the risk factors for hospitalization: history of 2+ falls in the past 12 months; 2+ hospitalizations in the past 6 months; decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5+ medications, and others.
@@ -1357,14 +1322,14 @@ Demographic controls & . & . & Yes & Yes \\
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Effect of Handoffs on Rehospitalization among Low-Risk and High-Risk Patients}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization among Low-Risk and High-Risk Patients}
 \label{tab:iv_byseverity}
 \begin{threeparttable}
 {
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{3}{c}} %{lcccc}
 \toprule
-& {Temporarily High Risk} & {Fragile Health} & {Took 5+ Medications}\\
+& {Temporarily High Risk} & {Fragile Health} & {Taking 5+ Medications}\\
                     &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
 \midrule
 \multicolumn{4}{l}{A. First stage - Handoff} \\
@@ -1404,7 +1369,7 @@ R-squared          &       0.004      &       0.007    &       0.006   \\
 J-statistic p-value    &       0.531   &       0.751   &       0.394   \\
 \\
 \midrule
-Observations       &      625687   &      300077      &      908473   \\
+Observations       &      625,687   &      300,077      &      908,473   \\
 Hospitalization risk controls & Yes & Yes & Yes \\
 Demographic controls & Yes & Yes & Yes \\
  Comorbidity controls & Yes & Yes & Yes \\
@@ -1413,8 +1378,7 @@ Demographic controls & Yes & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.}  Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+	\item \emph{Notes.}  This table presents IV estimates of the effect of handoffs on the likelihood of rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
@@ -1442,7 +1406,7 @@ Demographic controls & Yes & Yes & Yes \\
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{OLS: The Effects of Handoffs Varies by the Frequency and Sequencing of Handoffs}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization by the Frequency and Sequencing of Handoffs}
 % and by the nurses' employment contracts}
 \label{tab:ols_mechanism}
 \begin{threeparttable}
@@ -1494,7 +1458,7 @@ Demographic controls & . & . & Yes & Yes \\
 \end{tabular*}
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.} This table presents linear probability models examining whether the effect on the probability of rehospitalization differs by the frequency and sequencing of handoff.
+	\item \emph{Notes.} This table presents OLS estimates of the effect of the frequency and sequencing of handoffs on the likelihood of rehospitalization.
 	%; and (B) whether patients experiencing a handoff from salaried to piece-rate workers are more likely to be rehospitalized.
 	An observation is a patient episode-day. Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode-days in the same office in parentheses.
 	In all panels and all columns, we control for the indicator for having a nurse visit, cumulative number of nurse visits provided, mean interval of days between two consecutive visits during the episode, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
@@ -1508,215 +1472,11 @@ Demographic controls & . & . & Yes & Yes \\
 
 
 
-
-% \begin{table}[H]
-% \footnotesize
-% \setlength\tabcolsep{0pt}
-% \centering
-% \caption{GMM 2SLS: Effect of Handoffs on Rehospitalization among Relatively Low-Risk Patients Whose Overall Status Was Temporarily Facing High Health Risks}
-% \label{tab:iv_tempbad}
-% \begin{threeparttable}
-% {
-% \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
-% \toprule
-%                     &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-% \midrule
-% \multicolumn{5}{l}{A. First stage - Handoff} \\
-% Short absence       &      0.1364***&      0.1363***&      0.1362***&      0.1361***\\
-%                     &    (0.0066)   &    (0.0067)   &    (0.0066)   &    (0.0066)   \\
-% Medium absence      &      0.4138***&      0.4138***&      0.4131***&      0.4127***\\
-%                     &    (0.0118)   &    (0.0118)   &    (0.0118)   &    (0.0118)   \\
-% Long absence        &      0.5321***&      0.5320***&      0.5307***&      0.5301***\\
-%                     &    (0.0131)   &    (0.0132)   &    (0.0133)   &    (0.0134)   \\
-% Other office        &      0.3218***&      0.3217***&      0.3212***&      0.3209***\\
-%                     &    (0.0217)   &    (0.0218)   &    (0.0217)   &    (0.0217)   \\
-% Attrition           &      0.4752***&      0.4752***&      0.4758***&      0.4762***\\
-%                     &    (0.0191)   &    (0.0191)   &    (0.0191)   &    (0.0190)   \\
-% R-squared           &       0.177   &       0.177   &       0.177   &       0.178   \\
-% F-statistic         &     507.416   &     505.388   &     503.431   &     497.345   \\
-% \\
-% \multicolumn{5}{l}{B. First stage - Have a nurse visit} \\
-% Short absence       &     -0.1111***&     -0.1111***&     -0.1111***&     -0.1111***\\
-%                     &    (0.0049)   &    (0.0049)   &    (0.0049)   &    (0.0050)   \\
-% Medium absence      &     -0.0964***&     -0.0963***&     -0.0963***&     -0.0963***\\
-%                     &    (0.0036)   &    (0.0036)   &    (0.0036)   &    (0.0036)   \\
-% Long absence        &     -0.0943***&     -0.0944***&     -0.0945***&     -0.0945***\\
-%                     &    (0.0056)   &    (0.0056)   &    (0.0055)   &    (0.0055)   \\
-% Other office        &     -0.1320***&     -0.1320***&     -0.1318***&     -0.1319***\\
-%                     &    (0.0072)   &    (0.0072)   &    (0.0072)   &    (0.0072)   \\
-% Attrition           &     -0.0846***&     -0.0843***&     -0.0842***&     -0.0837***\\
-%                     &    (0.0051)   &    (0.0051)   &    (0.0052)   &    (0.0052)   \\
-% R-squared           &       0.247   &       0.247   &       0.247   &       0.247   \\
-% F-statistic         &     166.564   &     165.883   &     164.082   &     163.003   \\
-% \\
-% \multicolumn{5}{l}{C. Second stage - Rehospitalization} \\
-% Handoff             &      0.0031***&      0.0032***&      0.0034***&      0.0034***\\
-%                     &    (0.0011)   &    (0.0011)   &    (0.0011)   &    (0.0010)   \\
-% Have a nurse visit  &      0.0036   &      0.0037   &      0.0039   &      0.0039   \\
-%                     &    (0.0025)   &    (0.0025)   &    (0.0025)   &    (0.0024)   \\
-% R-squared           &       0.004   &       0.004   &       0.004   &       0.004   \\
-% J-statistic p-value &       0.532   &       0.515   &       0.510   &       0.531   \\
-% \\
-% \midrule
-% Observations        &      625687   &      625687   &      625687   &      625687   \\
-% Hospitalization risk controls & . & Yes & Yes & Yes \\
-% Demographic controls & . & . & Yes & Yes \\
-%  Comorbidity controls & . & . & . & Yes \\
-% \bottomrule
-% \end{tabular*}
-% }
-% 	\begin{tablenotes}[para,flushleft]
-% 	\scriptsize
-% 	\item \emph{Notes.}  Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-% 	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
-% 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
-% (1) Active--visiting patients in the patient's home office;
-% (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
-% (3) Medium absence--not providing visits in any office for 7 to 14 consecutive days;
-% (4) Long absence--not providing visits in any office for 15 or more consecutive days;
-% (5) Assigned to other office--providing visits exclusively in a different office; and
-% (6) Attrition--day post labor termination for nurse according to HR records.
-% 	An observation is a patient episode-day.
-% 	Robust standard errors allowing for arbitrary correlation within the same office in parentheses.
-% 		In all specifications, we control for the cumulative number of nurse visits provided, mean interval of days between two consecutive visits, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
-% 	Columns (2)-(4) additionally control for hospitalization risk controls, demographic controls, and comorbidity controls, respectively.
-% %	Hospitalization risk controls include dummies for the risk factors for hospitalization: history of 2+ falls in the past 12 months; 2+ hospitalizations in the past 6 months; decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5+ medications, and others.
-% %	Demographic controls include age dummies for each age 66-94 and age 95+ (reference group: age=65); female; white; insurance type--Medicare Advantage (MA) plan with a visit-based reimbursement, MA plan with an episode-based reimbursement, dual eligible with Medicaid enrollment (reference group: Medicare FFS); dummy for having no assistance available; dummy for living alone.
-% %	Comorbidity controls include dummies for 17 Charlson comorbidity index factors; dummies overall status--very bad (patient has serious progressive conditions that could lead to death within a year), bad (patient is likely to remain in fragile health); and temporarily bad (temporary facing high health risks); dummies for high-risk factors--alcohol dependency, drug dependency, smoking, obesity--and dummies for conditions prior to hospital stay within past 14 days--disruptive or socially inappropriate behavior, impaired decision making, indwelling or suprapublic catheter, intractable pain, serious memory loss, urinary incontinence.
-% 	*significant at 10\%; **significant at 5\%; ***significant at 1\%.
-% 	%*significant at 5\%; **significant at 1\%; ***significant at 0.1\%.
-% 	\end{tablenotes}
-% \end{threeparttable}
-% \end{table}
-
-
-% \begin{table}[H]
-% \footnotesize
-% \setlength\tabcolsep{0pt}
-% \centering
-% \caption{GMM 2SLS: Effect of Handoffs on Rehospitalization among High-Risk Patients Whose Overall Status Was Likely to Remain in Fragile Health}
-% \label{tab:iv_fragile}
-% \begin{threeparttable}
-% {
-% \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
-% \toprule
-%                     &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-% \midrule
-% \multicolumn{5}{l}{A. First stage - Handoff} \\
-% Short absence       &      0.1250***&      0.1250***&      0.1248***&      0.1248***\\
-%                     &    (0.0078)   &    (0.0078)   &    (0.0078)   &    (0.0078)   \\
-% Medium absence      &      0.4074***&      0.4072***&      0.4071***&      0.4071***\\
-%                     &    (0.0130)   &    (0.0131)   &    (0.0131)   &    (0.0131)   \\
-% Long absence        &      0.5072***&      0.5074***&      0.5069***&      0.5066***\\
-%                     &    (0.0196)   &    (0.0196)   &    (0.0197)   &    (0.0193)   \\
-% Other office        &      0.2644***&      0.2640***&      0.2630***&      0.2625***\\
-%                     &    (0.0269)   &    (0.0268)   &    (0.0266)   &    (0.0265)   \\
-% Attrition           &      0.4431***&      0.4435***&      0.4436***&      0.4433***\\
-%                     &    (0.0276)   &    (0.0277)   &    (0.0277)   &    (0.0282)   \\
-% R-squared           &       0.176   &       0.176   &       0.177   &       0.179   \\
-% F-statistic         &     309.237   &     310.090   &     311.057   &     311.131   \\
-% \\
-% \multicolumn{5}{l}{B. First stage - Have a nurse visit} \\
-% Short absence       &     -0.1068***&     -0.1068***&     -0.1069***&     -0.1068***\\
-%                     &    (0.0054)   &    (0.0054)   &    (0.0054)   &    (0.0054)   \\
-% Medium absence      &     -0.0964***&     -0.0966***&     -0.0967***&     -0.0966***\\
-%                     &    (0.0044)   &    (0.0045)   &    (0.0045)   &    (0.0045)   \\
-% Long absence        &     -0.0892***&     -0.0892***&     -0.0893***&     -0.0891***\\
-%                     &    (0.0058)   &    (0.0059)   &    (0.0058)   &    (0.0057)   \\
-% Other office        &     -0.1313***&     -0.1315***&     -0.1310***&     -0.1310***\\
-%                     &    (0.0102)   &    (0.0101)   &    (0.0100)   &    (0.0100)   \\
-% Attrition           &     -0.0705***&     -0.0703***&     -0.0706***&     -0.0701***\\
-%                     &    (0.0072)   &    (0.0073)   &    (0.0074)   &    (0.0073)   \\
-% R-squared           &       0.240   &       0.240   &       0.241   &       0.241   \\
-% F-statistic         &     171.856   &     170.450   &     174.551   &     173.479   \\
-% \\
-% \multicolumn{5}{l}{C. Second stage - Rehospitalization} \\
-% Handoff             &      0.0052*  &      0.0052*  &      0.0053*  &      0.0053*  \\
-%                     &    (0.0028)   &    (0.0029)   &    (0.0029)   &    (0.0029)   \\
-% Have a nurse visit  &      0.0039   &      0.0040   &      0.0040   &      0.0041   \\
-%                     &    (0.0063)   &    (0.0063)   &    (0.0063)   &    (0.0063)   \\
-% R-squared           &       0.006   &       0.007   &       0.007   &       0.007   \\
-% J-statistic p-value &       0.837   &       0.778   &       0.730   &       0.751   \\
-% \\
-% \midrule
-% Observations        &      300077   &      300077   &      300077   &      300077   \\
-% Hospitalization risk controls & . & Yes & Yes & Yes \\
-% Demographic controls & . & . & Yes & Yes \\
-%  Comorbidity controls & . & . & . & Yes \\
-% \bottomrule
-% \end{tabular*}
-% }
-% 	\begin{tablenotes}[para,flushleft]
-% 	\scriptsize
-% 	\item \emph{Notes.}  Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-% 	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
-% 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
-% (1) Active--visiting patients in the patient's home office;
-% (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
-% (3) Medium absence--not providing visits in any office for 7 to 14 consecutive days;
-% (4) Long absence--not providing visits in any office for 15 or more consecutive days;
-% (5) Assigned to other office--providing visits exclusively in a different office; and
-% (6) Attrition--day post labor termination for nurse according to HR records.
-% 	An observation is a patient episode-day.
-% 	Robust standard errors allowing for arbitrary correlation within the same office in parentheses.
-% 		In all specifications, we control for the cumulative number of nurse visits provided, mean interval of days between two consecutive visits, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
-% 	Columns (2)-(4) additionally control for hospitalization risk controls, demographic controls, and comorbidity controls, respectively.
-% %	Hospitalization risk controls include dummies for the risk factors for hospitalization: history of 2+ falls in the past 12 months; 2+ hospitalizations in the past 6 months; decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5+ medications, and others.
-% %	Demographic controls include age dummies for each age 66-94 and age 95+ (reference group: age=65); female; white; insurance type--Medicare Advantage (MA) plan with a visit-based reimbursement, MA plan with an episode-based reimbursement, dual eligible with Medicaid enrollment (reference group: Medicare FFS); dummy for having no assistance available; dummy for living alone.
-% %	Comorbidity controls include dummies for 17 Charlson comorbidity index factors; dummies overall status--very bad (patient has serious progressive conditions that could lead to death within a year), bad (patient is likely to remain in fragile health); and temporarily bad (temporary facing high health risks); dummies for high-risk factors--alcohol dependency, drug dependency, smoking, obesity--and dummies for conditions prior to hospital stay within past 14 days--disruptive or socially inappropriate behavior, impaired decision making, indwelling or suprapublic catheter, intractable pain, serious memory loss, urinary incontinence.
-% 	*significant at 10\%; **significant at 5\%; ***significant at 1\%.
-% 	%*significant at 5\%; **significant at 1\%; ***significant at 0.1\%.
-% 	\end{tablenotes}
-% \end{threeparttable}
-% \end{table}
-
-
-% \clearpage
-% \begin{table}[H]
-% \footnotesize
-% \setlength\tabcolsep{0pt}
-% \centering
-% \caption{OLS: Patients Experiencing a Handoff Are Rehospitalized More Quickly}
-% \label{tab:days2readmit_ols}
-% \begin{threeparttable}
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
-% \toprule
-% & \multicolumn{4}{c}{Dep Var: Ln(Number of days to readmission since last nurse visit)} \\
-%  & (1) & (2) & (3) & (4) \\
-% \midrule
-% Handoff & -0.0803*** & -0.0796*** & -0.0781*** & -0.0810*** \\
-%  & (0.0194) & (0.0195) & (0.0194) & (0.0194) \\
-% R-squared & 0.4090 & 0.4100 & 0.4134 & 0.4167 \\
-% Observations & 7,269 & 7,269 & 7,269 & 7,269 \\
-% % Mean dep. var. & 1.1843 & 1.1843 & 1.1843 & 1.1843 \\
-% % \% change in rehosp from HO & -6.78 & -6.72 & -6.59 & -6.84 \\
-% Hospitalization risk controls & . & Yes & Yes & Yes \\
-% Demographic controls & . & . & Yes & Yes \\
-% Comorbidity controls & . & . & . & Yes \\
-% \bottomrule
-% \end{tabular*}
-% 	\begin{tablenotes}[para,flushleft]
-% 	\scriptsize
-% 	\item \emph{Notes.} This table presents OLS estimation models examining whether among patients who end up being rehospitalized, experiencing a handoff in the last nurse visit shortens the time to readmission.
-% 	%(A) whether patients experiencing a handoff are more likely to be rehospitalized; (B) whether the effect on the probability of rehospitalization differs by the frequency of handoff; and (C) whether patients experiencing a handoff from salaried to piece-rate workers are more likely to be rehospitalized.
-% 	An observation is a patient episode. Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode in the same office in parentheses.
-% 	In all panels and all columns, we control for cumulative number of nurse visits provided, mean interval of days between two consecutive visits during the episode, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects. The day level data refer to the day of last nurse visit.
-% 	In columns (2)-(4), hospitalization risk controls include dummies for the risk factors for hospitalization: history of 2+ falls in the past 12 months; 2+ hospitalizations in the past 6 months; decline in mental, emotional, or behavioral status in the past 3 months, currently taking 5+ medications, and others.
-% 	In columns (3)-(4), demographic controls include age dummies for each age 66-94 and age 95+ (reference group: age=65); female; white; insurance type--Medicare Advantage (MA) plan with a visit-based reimbursement, MA plan with an episode-based reimbursement, dual eligible with Medicaid enrollment (reference group: Medicare FFS); dummy for having no assistance available; dummy for living alone.
-% 	In column (4), comorbidity controls include dummies for 17 Charlson comorbidity index factors; dummies overall status--very bad (patient has serious progressive conditions that could lead to death within a year), bad (patient is likely to remain in fragile health); and temporarily bad (temporary facing high health risks); dummies for high-risk factors--alcohol dependency, drug dependency, smoking, obesity--and dummies for conditions prior to hospital stay within past 14 days--disruptive or socially inappropriate behavior, impaired decision making, indwelling or suprapublic catheter, intractable pain, serious memory loss, urinary incontinence.
-% 	 *significant at 10\%; **significant at 5\%; ***significant at 1\%.
-% 	\end{tablenotes}
-% \end{threeparttable}
-% \end{table}
-
-
 \begin{table}[H]
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Patients Experiencing a Handoff Are Rehospitalized More Quickly}
+\caption{The Effect of Handoffs on Time to Rehospitalization from the Last Nurse Visit}
 \label{tab:days2readmit_iv}
 \begin{threeparttable}
 {
@@ -1755,9 +1515,8 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.}  We use a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage result of an IV regression, and Panel B show the second-stage result.
-	We instrument the indicator variables for nurse handoffs with the following 5 instruments on the day of last nurse visit:
+	\item \emph{Notes.} This table presents IV estimates of the effect of handoffs on time to rehospitalization from the last nurse visit obtained with a two-step efficient generalized method of moments (GMM) estimator.
+	We instrument the indicator variable for nurse handoffs with the following 5 instruments on the day of last nurse visit:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
 (3) Medium absence--not providing visits in any office for 7 to 14 consecutive days;
@@ -1784,10 +1543,10 @@ Demographic controls & . & . & Yes & Yes \\
 \newpage
 \section{Appendix}
 
-\subsection{Analysis Using the 30-Day Readmission Outcome}
+\subsection{Analysis Using the 30-Day Hospital Readmission Outcome}
 \label{appendix:hosp30}
 
-We report the OLS and 2SLS results estimated using the indicator for rehospitalization within 30 days of hospital discharge in Tables~\ref{tab:ols_handoffonly30} and \ref{tab:iv30}, respectively.
+We report the OLS and IV results estimated using the indicator for rehospitalization within 30 days of hospital discharge in Tables~\ref{tab:ols_handoffonly30} and \ref{tab:iv30}, respectively.
 %0.0014/.0055 = .254545455
 We find that the coefficient estimates remain similar, albeit slightly lower in the OLS estimation result and higher in the IV estimation result.
 The similar size in estimates is not surprising since Table~\ref{tab:summstats} shows that most of the hospital readmission occurs within 30 days of hospital discharge.
@@ -1799,7 +1558,7 @@ The higher percentage changes in this result result from a lower 30-day readmiss
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{OLS: Patients Experiencing a Handoff Are More Likely to Be Rehospitalized within 30 Days of Hospital Discharge}
+\caption{The Effect of Handoffs on the Likelihood of 30-Day Rehospitalization}
 \label{tab:ols_handoffonly30}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
@@ -1820,7 +1579,7 @@ Comorbidity controls & . & . & . & Yes \\
 \end{tabular*}
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.} This table presents linear probability models examining whether patients experiencing a handoff are more likely to be rehospitalized within 30 days of hospital discharge.
+	\item \emph{Notes.} This table presents OLS estimates of the effect of handoffs on the likelihood of 30-day rehospitalization.
 	%(A) whether patients experiencing a handoff are more likely to be rehospitalized; (B) whether the effect on the probability of rehospitalization differs by the frequency of handoff; and (C) whether patients experiencing a handoff from salaried to piece-rate workers are more likely to be rehospitalized.
 	An observation is a patient episode-day. Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode-days in the same office in parentheses.
 	In all panels and all columns, we control for the indicator for having a nurse visit, cumulative number of nurse visits provided, mean interval of days between two consecutive visits during the episode, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
@@ -1837,7 +1596,7 @@ Comorbidity controls & . & . & . & Yes \\
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Experiencing Handoffs Increases the Likelihood of Readmission within 30 Days of Hospital Discharge}
+\caption{The Effect of Handoffs on the Likelihood of 30-Day Rehospitalization When Using Instruments}
 \label{tab:iv30}
 \begin{threeparttable}
 {
@@ -1892,8 +1651,7 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.} Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+	\item \emph{Notes.} This table presents IV estimates of the effect of handoffs on the likelihood of 30-day rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
@@ -1930,7 +1688,7 @@ These average marginal effects are even stronger than implied by the OLS and IV 
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{Logit: Patients Experiencing a Handoff Are More Likely to Be Rehospitalized}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization}
 \label{tab:clogit}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}*{4}{c}} %{lcccc}
@@ -1952,7 +1710,7 @@ Comorbidity controls & . & . & . & Yes \\
 \end{tabular*}
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.} This table presents average marginal effects estimated using the fixed effect conditional logit estimation results.
+	\item \emph{Notes.} This table presents average marginal effects estimated using the fixed effect conditional logit estimation model.
 	%(A) whether patients experiencing a handoff are more likely to be rehospitalized; (B) whether the effect on the probability of rehospitalization differs by the frequency of handoff; and (C) whether patients experiencing a handoff from salaried to piece-rate workers are more likely to be rehospitalized.
 	An observation is a patient episode-day. Standard errors are clustered at the home health office level, allowing for arbitrary correlation among episode-days in the same office in parentheses.
 	In all panels and all columns, we control for the indicator for having a nurse visit, cumulative number of nurse visits provided, mean interval of days between two consecutive visits during the episode, number of days since last nurse visit, number of days since last visit by any provider; number of ongoing episodes in the office-day, number of nurses working in the office-day; and office fixed effects, day of week fixed effects, month-year of the day fixed effects, and home health day fixed effects.
@@ -2098,7 +1856,7 @@ Total                    & 1,031,904 & 100.00      &           &         \\
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Effect of Handoffs on Rehospitalization Using an Alternative Definition of Breaks in Nurses' Availability}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization When Using an Alternative Definition of Breaks in Nurses' Availability}
 \label{tab:iv_robust}
 \begin{threeparttable}
 {
@@ -2152,8 +1910,7 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-		\item \emph{Notes.} This table presents linear probability models examining whether patients experiencing a hand-off are more likely to be rehospitalized, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+		\item \emph{Notes.} This table presents IV estimates of the effect of handoffs on the likelihood of rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for skilled nurse handoffs and for having a nurse visit with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 4 consecutive days;
@@ -2190,7 +1947,7 @@ Demographic controls & . & . & Yes & Yes \\
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: The Effect of Handoffs on the Likelihood of Readmission}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization with Some Dynamic Patient-Severity Covariates Excluded}
 \label{tab:iv_noendog}
 \begin{threeparttable}
 {
@@ -2233,7 +1990,7 @@ Have a nurse visit  &      0.0026   &      0.0026   &      0.0027   &      0.002
 R-squared           &       0.001   &       0.001   &       0.001   &       0.002   \\
 J-statistic p-value &       0.813   &       0.747   &       0.733   &       0.751   \\
 \midrule
-Observations        &     1031904   &     1031904   &     1031904   &     1031904   \\
+Observations        &     1,031,904   &     1,031,904   &     1,031,904   &     1,031,904   \\
 Hospitalization risk controls & . & Yes & Yes & Yes \\
 Demographic controls & . & . & Yes & Yes \\
  Comorbidity controls & . & . & . & Yes \\
@@ -2242,8 +1999,7 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-		\item \emph{Notes.} This table presents linear probability models examining whether patients experiencing a hand-off are more likely to be rehospitalized, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+		\item \emph{Notes.} This table presents IV estimates of the effect of handoffs on the likelihood of rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for skilled nurse handoffs and for having a nurse visit with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 4 consecutive days;
@@ -2274,7 +2030,7 @@ As a robustness check, we re-estimate our main specification (Table~\ref{tab:iv}
 \footnotesize
 \setlength\tabcolsep{0pt}
 \centering
-\caption{GMM 2SLS: Effect of Handoffs on Rehospitalization among Patients Who Started Home Health Episode within 3 Days from Hospital Discharge}
+\caption{The Effect of Handoffs on the Likelihood of Rehospitalization among Patients Who Started Home Health Episode within 3 Days from Hospital Discharge}
 \label{tab:iv_days_fromhospdc}
 \begin{threeparttable}
 {
@@ -2320,7 +2076,7 @@ R-squared           &       0.004   &       0.005   &       0.005   &       0.00
 J-statistic p-value &       0.631   &       0.543   &       0.531   &       0.596   \\
 \\
 \midrule
-Observations        &      904724   &      904724   &      904724   &      904724   \\
+Observations        &      904,724   &      904,724   &      904,724   &      904,724   \\
 Hospitalization risk controls & . & Yes & Yes & Yes \\
 Demographic controls & . & . & Yes & Yes \\
  Comorbidity controls & . & . & . & Yes \\
@@ -2329,8 +2085,7 @@ Demographic controls & . & . & Yes & Yes \\
 }
 	\begin{tablenotes}[para,flushleft]
 	\scriptsize
-	\item \emph{Notes.}  Linear probability models are estimated, using a two-step efficient generalized method of moments (GMM) estimator.
-	Panels A and B show the first-stage results of an IV regression, and Panel C show the second-stage results.
+	\item \emph{Notes.}  This table presents IV estimates of the effect of handoffs on the likelihood of rehospitalization obtained with a two-step efficient generalized method of moments (GMM) estimator.
 	We instrument the indicator variables for nurse handoffs and for nurse visits with the following 5 instruments:
 (1) Active--visiting patients in the patient's home office;
 (2) Short absence--not providing visits in any office for 1 to 6 consecutive days;
